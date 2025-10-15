@@ -130,9 +130,9 @@ async function loadSession() {
       return null;
     }
 
-    if (config.SESSION_ID.startsWith("Mercedes~")) {
+    if (config.SESSION_ID.startsWith("Silent-luna~")) {
       console.log(chalk.yellow("[ ⏳ ] Decoding base64 session..."));
-      const base64Data = config.SESSION_ID.replace("Mercedes~", "");
+      const base64Data = config.SESSION_ID.replace("Silena-luna~", "");
       if (!/^[A-Za-z0-9+/=]+$/.test(base64Data)) {
         throw new Error("Invalid base64 format in SESSION_ID");
       }
@@ -146,9 +146,9 @@ async function loadSession() {
       fsSync.writeFileSync(credsPath, decodedData);
       console.log(chalk.green("[ ✅ ] Base64 session decoded and saved successfully"));
       return sessionData;
-    } else if (config.SESSION_ID.startsWith("Mercedes~")) {
+    } else if (config.SESSION_ID.startsWith("Silent-luna~")) {
       console.log(chalk.yellow("[ ⏳ ] Downloading MEGA.nz session..."));
-      const megaFileId = config.SESSION_ID.replace("Mercedes~", "");
+      const megaFileId = config.SESSION_ID.replace("Silent-luna~", "");
       const filer = File.fromURL(`https://mega.nz/file/${megaFileId}`);
       const data = await new Promise((resolve, reject) => {
         filer.download((err, data) => {
@@ -160,7 +160,7 @@ async function loadSession() {
       console.log(chalk.green("[ ✅ ] MEGA session downloaded successfully"));
       return JSON.parse(data.toString());
     } else {
-      throw new Error("Invalid SESSION_ID format. Use 'Mercedes~' for base64 or 'Mercedes~' for MEGA.nz");
+      throw new Error("Invalid SESSION_ID format. Use 'Silent-luna~' for base64 or 'Silent-luna~' for MEGA.nz");
     }
   } catch (error) {
     console.error(chalk.red("❌ Error loading session:", error.message));
@@ -255,7 +255,7 @@ async function connectToWA() {
         setTimeout(connectToWA, 5000);
       }
     } else if (connection === "open") {
-      console.log(chalk.green("[ 🤖 ] Mercedes Connected ✅"));
+      console.log(chalk.green("[ 🤖 ] SILENT-LUNA Connected ✅"));
 
       // Load plugins
       const pluginPath = path.join(__dirname, "plugins");
@@ -276,12 +276,12 @@ try {
   const jid = malvin.decodeJid(malvin.user.id);
   if (!jid) throw new Error("Invalid JID for bot");
 
-  const botname = "ᴍᴇʀᴄᴇᴅᴇs";
-  const ownername = "ᴍᴀʀɪsᴇʟ";
+  const botname = "𝐒𝐈𝐋𝐄𝐍𝐓-𝐋𝐔𝐍𝐀";
+  const ownername = "GURU";
   const prefix = getPrefix();
-  const username = "betingrich4";
+  const username = "Guru";
   const mrmalvin = `https://github.com/${username}`;
-  const repoUrl = "https://github.com/betingrich4/Mercedes";
+  const repoUrl = "https://github.com/itsguruu/SILENT-LUNA";
   const welcomeAudio = "https://files.catbox.moe/z47dgd.p3";
   
   // Get current date and time
